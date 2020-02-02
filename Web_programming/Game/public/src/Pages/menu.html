@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <title>Tank Battle Menu</title>
+  <link rel="stylesheet" href="../Styles/main.css">
+</head>
+
+<body>
+  <div class="form">
+    <form action="main.html" method="get">
+      <label class="form_elements">
+        Enter name:<br>
+        <input class="form_elements" name="username" placeholder="Имя"><br>
+      </label>
+      <input class="button" type="submit" value="Enter" onclick="storeName(this.form.username.value)">
+    </form>
+    <button class="button" onClick="document.location.href='records.html'">Score table</button>
+  </div>
+  <script src="../PageManagers/menu.js"></script>
+  <script>init()</script>
+</body>
+</html>

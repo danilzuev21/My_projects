@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Tank Battle
+        style
+            include ../public/src/Styles/main.css
+    body
+        .form
+            form(action="main" method="get")
+                label.form_elements Enter name:
+                    br
+                    input.form_elements(name="username" placeholder="Name")
+                    br
+                input(class="button form_elements" type="submit" value="Enter" onclick="storeName(this.form.username.value)")
+            button(class="button form_elements" onClick="document.location.href='records'") Records
+        script
+            include ../public/src/PageManagers/menu.js
+        script.
+            init()

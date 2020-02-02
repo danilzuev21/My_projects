@@ -1,0 +1,59 @@
+[
+	{
+		"name": "Война и мир",
+		"author": "Пушкин А.С.",
+		"date": "2019-11-01",
+		"available": false,
+		"user": "dfdf",
+		"id": 1,
+		"year": "0"
+	},
+	{
+		"name": "Преступление и наказание",
+		"author": "Толстой Л. Н.",
+		"date": "2019-11-29",
+		"available": false,
+		"user": "kjkf",
+		"id": 2,
+		"year": "1900"
+	},
+	{
+		"name": "Евгений Онегин ",
+		"author": "Достоевский Ф.М.",
+		"date": "",
+		"available": true,
+		"id": 3
+	},
+	{
+		"name": "Название",
+		"author": "Автор А.В.",
+		"date": "",
+		"available": true,
+		"id": 5
+	},
+	{
+		"name": "Название",
+		"author": "Автор А.В.",
+		"date": "2019-11-30",
+		"available": false,
+		"id": 6,
+		"year": "0",
+		"user": "Андрей"
+	},
+	{
+		"name": "Название",
+		"author": "Автор А.В.",
+		"date": "2019-11-15",
+		"available": false,
+		"id": 7,
+		"year": "880",
+		"user": "fdd"
+	},
+	{
+		"name": "Название",
+		"author": "Автор А.В.",
+		"date": 0,
+		"available": "true",
+		"id": 8
+	}
+]

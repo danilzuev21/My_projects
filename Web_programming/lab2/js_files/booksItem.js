@@ -1,0 +1,139 @@
+let b = !{JSON.stringify(book)};
+const bookButton = document.getElementById('book_button');
+bookButton.onclick = !{book.available} ? showPopup : returnBook;
+const returnButton = document.getElementById('return_button');
+returnButton.onclick = function () {
+    window.location.href = '/';
+}
+const closePopup = document.getElementById('close_popup');
+closePopup.onclick = function () {
+    document.getElementById('fadeuot').style.display = 'none';
+}
+
+
+function returnBook() {
+    b.available = true;
+    send(b)
+}
+
+function showPopup() {
+    document.getElementById('fadeuot').style.display = 'block';
+    let popup = document.getElementById('popup');
+}
+function hidePopup() {
+    document.getElementById('fadeuot').style.display = 'none';
+    let popup = document.getElementById('popup');
+}
+
+let submit = document.getElementById('submit');
+submit.onclick = function () {
+    let user = document.getElementById('user_name').value;
+    let date = document.getElementById('user_date').value;
+    if (!user || !date) {
+        alert("Введите все необходимые данные");
+    }
+    b.user = user;
+    b.date = date;
+    b.available = false;
+    send(b);
+}
+
+const edit_td = document.getElementById('book_edit');
+const remove_td = document.getElementById('book_remove');
+remove_td.style = "border-radius: 0 5px 5px 0;background-color:lightpink; cursor:pointer; color:darkred;font-weight:bold;"
+edit_td.style.cursor = 'pointer';
+
+edit_td.onclick = function () {
+    const elementTable = document.getElementById('book_table');
+    elementTable.deleteRow(1);
+    var row = elementTable.insertRow(1);
+    let hcell;
+    row.insertCell().appendChild(createInput('text', 'book_author', 'Введите автора')).value = b.author;
+    row.insertCell().appendChild(createInput('text', 'book_name', 'Введите название')).value = b.name;
+    let y = row.insertCell().appendChild(createInput('number', 'book_year', 'Введите год'));
+    y.value = b.year ? b.year : 0;
+
+
+
+    row.insertCell().innerText = b.available ? "Да" : "Нет";
+    row.insertCell().innerText = b.available ? 'Нет' : b.date;
+    row.insertCell().innerText = b.available ? 'Нет' : b.user;
+    let done = row.insertCell()
+    done.innerText = '✓';
+    done.style.cursor = 'pointer';
+    done.style = "border-radius: 0 5px 5px 0;cursor:pointer;font-weight:bold;";
+    done.onclick = function () {
+        b.year = y.value;
+        b.author = document.getElementById('book_author').value;
+        b.name = document.getElementById('book_name').value;
+        send(b);
+    }
+};
+
+remove_td.onclick = function () {
+    let id = b.id;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+    };
+    alert("Книга была удалена");
+    window.location.href = '/';
+    xhttp.open("DELETE", '/' + id, true);
+    xhttp.send(null);
+}
+
+const send = function (book) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        let res = JSON.parse(this.response);
+        if (res.book) {
+            const elementTable = document.getElementById('book_table');
+            elementTable.deleteRow(1);
+            var row = elementTable.insertRow(1);
+            row.insertCell().innerText = res.book.author;;
+            row.insertCell().innerText = res.book.name;;
+            row.insertCell().innerText = res.book.year ? res.book.year : "Не указан";;
+            row.insertCell().innerText = res.book.available ? "Да" : "Нет";;
+            row.insertCell().innerText = res.book.available ? "Нет" : res.book.date;;
+            row.insertCell().innerText = res.book.available ? "Нет" : res.book.user;;
+            row.insertCell().innerText = "Удалить книгу";
+
+
+            elementTable.rows[1].cells[6].style = "border-radius: 0 5px 5px 0;background-color:lightpink; cursor:pointer; color:darkred;font-weight:bold;";
+            elementTable.rows[1].cells[6].onclick = function () {
+                let id = b.id;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                };
+                alert("Книга была удалена");
+                window.location.href = '/';
+                xhttp.open("DELETE", '/' + id, true);
+                xhttp.send(null);
+            };
+
+            const bookButton = document.getElementById('book_button');
+            bookButton.innerText = res.book.available ? "Дать читателю" : "Вернуть в библиотеку";
+            bookButton.onclick = res.book.available ? showPopup : returnBook;
+            hidePopup();
+        } else {
+            alert(res.message ? res.message : "Неизвестная ошибка на стороне сервера")
+        }
+    };
+    xhttp.open("PUT", '/' + book.id, true);
+    xhttp.setRequestHeader('Content-Type', 'application/json');
+    xhttp.send(JSON.stringify({ book: book }));
+}
+
+const createInput = function (type, id, value = 0) {
+    var input = document.createElement("input");
+    input.type = type;
+    input.id = id;
+    if (type === 'text') {
+        input.placeholder = value;
+    }
+    if (type === "radio") {
+        input.value = 'value';
+    }
+    return input;
+};
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Tank Battle</title>
+		<link rel="stylesheet" href="../Styles/main.css">
+	</head>
+	<body>
+		<div class="center">
+			<table>
+				<tr>
+					<th>
+						Time:
+					</th>
+					<th>
+						Kills:
+					</th>
+					<th>
+						Score:
+					</th>
+					<th>
+						Level:
+					</th>
+				</tr>
+				<tr>
+					<td id='Time'></td>
+					<td id='Kills'></td>
+					<td id="Score"></td>
+					<td id='Level'></td>
+				</tr>
+			</table>
+		</div>
+		<canvas class="center" id="canvas" width="416"
+		height="352"></canvas>
+		<div class="center">
+			<button onClick="document.location.href='menu.html'">Menu</button>
+			<button onClick="document.location.href='records.html'">Score Table</button>
+			<button onClick="document.location.href='main.html'">Replay</button>
+		<div>
+		<script src="../GameManagers/Loader.js"></script>
+		<script src="../GameManagers/Entities.js"></script>
+		<script src="../GameManagers/ObjectManager.js"></script>
+		<script src="../GameManagers/MapManager.js"></script>
+		<script src="../GameManagers/SoundManager.js"></script>
+		<script src="../GameManagers/EventsManager.js"></script>
+		<script src="../GameManagers/GameManager.js"></script>
+		<script src="../PageManagers/main.js"></script>
+	</body>
+</html>

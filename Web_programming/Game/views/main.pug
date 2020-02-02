@@ -1,0 +1,30 @@
+DOCTYPE html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Tank Battle
+        style
+            include ../public/src/Styles/main.css
+    body
+        .center
+            p Time:
+            label#Time(for="")
+            br
+            p Level:
+            label#Level(for="")
+        canvas.canvas#canvas(width="416" heigth="352")
+        .center
+            button(onClick="document.location.href='/'") Menu
+            button(onClick="document.location.href='records'") Records
+        script
+            include ../public/src/GameManagers/Util.js
+            include ../public/src/GameManagers/Entities.js
+            include ../public/src/GameManagers/ObjectManager.js
+            include ../public/src/GameManagers/MapManager.js
+            include ../public/src/GameManagers/SoundManager.js
+            include ../public/src/GameManagers/PhysicsManager.js
+            include ../public/src/GameManagers/EventsManager.js
+            include ../public/src/GameManagers/GameManager.js
+            include ../public/src/PageManagers/main.js

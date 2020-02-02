@@ -1,0 +1,71 @@
+input {
+  outline: none;
+  outline-offset: 0;
+  background: rgba(185, 118, 230, 0.377);
+  border: none;
+}
+button {
+  padding: 5px;
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: rgba(142, 118, 230, 0.377);
+  color: rgb(28, 31, 224);
+  font-weight: bold;
+  cursor: pointer;
+}
+body {
+  padding: 150px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.cmp, .av{
+  border: 1px solid #4e00cc;
+  border-radius: 5px;
+  padding: 5px;
+  width: 200px;
+}
+table {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  border-radius: 10px;
+  border-spacing: 0;
+  text-align: center;
+}
+th {
+  background: rgb(142, 118, 230);
+  color: rgb(28, 31, 224);
+  padding: 10px 20px;
+}
+th, td {
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  border-color: white;
+}
+th:first-child, td:first-child {
+  text-align: left;
+}
+th:first-child {
+  border-top-left-radius: 5px;
+}
+th:last-child{
+  border-top-right-radius: 5px;
+}
+
+td {
+  padding: 10px 20px;
+  background: rgba(142, 118, 230, 0.377);
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 5px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 5px;
+}
+tr td:last-child {
+  border-right: none;
+}

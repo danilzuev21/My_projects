@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/nes.css@2.2.1/css/nes.min.css" rel="stylesheet">
+        <title>Tetris</title>
+        <link href="tetrisStyles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="mainWindow">
+            <canvas id="canvasid" width="300" height="540">
+            </canvas> 
+            <div class="nextFigure">
+                <p  style="text-align:left">Next figure:</p>
+                <canvas id="nextFigureid" width="150" height="150">
+                </canvas>
+            </div>
+            <div class="scoreWin">
+                <p>Score: <span id="scoreid" style="text-align:left;position:absolute;top:0px;right:0px"></span></p>
+            </div>
+            <div class="player">
+                <div>
+                    <p>Player: <br><div id="userName" style="position:absolute;top:26px"></div></p>
+                </div>
+            </div>
+            <div id="scoreTable">
+                <p>Score Table:</p>
+                <table id="tableid">
+                </table>
+            </div>
+        </div>
+               
+        
+        <script src="tetrisGame.js"></script>
+        <script>
+            document.getElementById('userName').innerHTML = localStorage.getItem('player');
+        </script>
+    </body>
+</html>

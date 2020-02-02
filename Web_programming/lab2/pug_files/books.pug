@@ -1,0 +1,65 @@
+style
+    include ../css/style.css
+    include ../css/window.css
+script
+    include ../js_files/books.js
+doctype html
+html
+        head
+            meta(charset="utf-8")
+            title= "Книги"
+        body
+            .window-container#addBookId
+                .window
+                    .close#close_popup ×
+                    h3(align='center') Введите данные книги
+                    label Автор книги:
+                    br
+                    input#book_author(type = 'text')
+                    br
+                    label Название книги:
+                    br
+                    input#book_name(type = 'text')
+                    br
+                    button#submit Добавить книгу
+            h1= "Книги"
+            table#books_table(width='100%')
+                thead
+                    tr
+                        th Автор
+                        th Название
+                        th В наличии
+                        th Дата возврата
+                         
+                    each item in books
+                        tr(data-id=item.id)
+
+                            td #{item.author}
+                            td #{item.name}
+                            td #{item.available ? "Да" : "Нет"}
+                            td #{item.available ? '' : item.date}
+                            td Удалить книгу
+            table
+                tr
+                    td(style="background:white;")
+                        .add
+                            button#addButton Добавить книгу
+                    td(style="background:white;")
+                        .cmp
+                            label Ведите границы дат
+                            br
+                            input#fst_date(type='date')
+                            br
+                            input#snd_date(type='date')
+                            br
+                            button#filter Отфильтровать
+                            button#reset Отменить
+                    td(style="background:white;")
+                        .av
+                            button#av В наличии
+                            button#not_av Не в наличии
+                            br
+                            button#reset1 Отменить
+            script.
+                setSortIcons('books_table')
+                setOnclicks();
