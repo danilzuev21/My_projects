@@ -1,0 +1,38 @@
+[
+	{
+		"id": "0",
+		"name": "Saturn Devouring His Son",
+		"author": "Francisco Goya",
+		"description": "5",
+		"price": "100000",
+		"min": "0",
+		"max": "200000",
+		"step": "0",
+		"inAuction": "No",
+		"isSold": "Yes"
+	},
+	{
+		"id": 1,
+		"name": "The Starry Night",
+		"author": "Vincent van Gogh",
+		"description": "1234",
+		"price": 150000,
+		"min": 0,
+		"max": 999999,
+		"step": 0,
+		"inAuction": "Yes",
+		"isSold": "No"
+	},
+	{
+		"id": "2",
+		"name": "Wheatfield with Crows",
+		"author": "Vincent van Gogh",
+		"description": "eqw",
+		"price": "500000",
+		"min": "0",
+		"max": "1000000",
+		"step": "0",
+		"inAuction": "Yes",
+		"isSold": "No"
+	}
+]

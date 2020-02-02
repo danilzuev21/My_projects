@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title List of paintings
+        style
+            include ../public/styles/css/main.css
+        script
+            include ../node_modules/jquery/dist/jquery.min.js
+            include ../public/lib/paintings.js
+        script(src="/socket.io/socket.io.js")
+    body
+        .window-container#addPainting
+            .window
+                .close#close_popup ×
+                h2(align='center') Input data of painting
+                label Name: 
+                input#paint_name(type = 'text')
+                br
+                label Author: 
+                input#paint_author(type = 'text')
+                br
+                label File:
+                form(method='post' enctype='multipart/form-data' id='fileinfo')
+                    input(type='file' name='file' id='file')
+                br
+                br
+                button#submit Add painting
+        include head.pug
+        h1 List of paintings
+        ul
+            each item in paintings
+                li(data-href='http://localhost:3000/paintings/'+item.id, data-id=item.id) &laquo#{item.name}&raquo #{item.author}
+        table
+            tr#buttons

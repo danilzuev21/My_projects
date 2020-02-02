@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Auction
+        link(rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
+        style
+            include ../public/styles/css/main.css
+        script(src="/socket.io/socket.io.js")
+        script
+            include ../node_modules/jquery/dist/jquery.min.js
+            include ../public/lib/auction.js
+        script( src="https://code.jquery.com/jquery-1.12.4.js")
+        script( src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+    body
+        include head.pug
+        table
+            tr
+                td#p_name
+            tr
+                td#p_author
+            tr
+                td#p_price
+            tr
+                td#money
+        p#time
+        p#cur
+        #mainchat
+            #chat
+                ul#messages
+            #form
+                input#m( placeholder="type your message here..." autocomplete="off")
+                button#send Send

@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Main page
+        style
+            include ../public/styles/css/main.css
+        script
+            include ../node_modules/jquery/dist/jquery.min.js
+            include ../public/lib/main.js
+        script(src="/socket.io/socket.io.js")
+    body
+        include head.pug
+        h1 Auction
+        ul
+            li#auc Auction
+            li#part Participants
+            li#img Paintings
+            li#set Settings

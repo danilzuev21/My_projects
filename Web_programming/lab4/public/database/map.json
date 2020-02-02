@@ -1,0 +1,73 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"id": 2,
+			"geometry": {
+				"coordinates": [
+					"10",
+					"10"
+				],
+				"type": "Point"
+			},
+			"properties": {
+				"description": "Location of qwe",
+				"iconCaption": "qwe",
+				"iconContent": "2",
+				"marker-color": "#1e98ff"
+			}
+		},
+		{
+			"type": "Feature",
+			"id": 3,
+			"geometry": {
+				"coordinates": [
+					"55.751574",
+					"39"
+				],
+				"type": "Point"
+			},
+			"properties": {
+				"description": "Location of Volodya",
+				"iconCaption": "Volodya",
+				"iconContent": "3",
+				"marker-color": "#1e98ff"
+			}
+		},
+		{
+			"type": "Feature",
+			"id": 4,
+			"geometry": {
+				"coordinates": [
+					50.6,
+					36.5
+				],
+				"type": "Point"
+			},
+			"properties": {
+				"description": "Location of Vitaliy",
+				"iconCaption": "Vitaliy",
+				"iconContent": "4",
+				"marker-color": "#1e98ff"
+			}
+		},
+		{
+			"type": "Feature",
+			"id": 5,
+			"geometry": {
+				"coordinates": [
+					"55.751574",
+					"37.573856"
+				],
+				"type": "Point"
+			},
+			"properties": {
+				"description": "Location of Name",
+				"iconCaption": "Name",
+				"iconContent": "5",
+				"marker-color": "#1e98ff"
+			}
+		}
+	]
+}

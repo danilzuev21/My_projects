@@ -1,0 +1,180 @@
+@input_color: rgb(202, 210, 233);
+@li_color: #aac9db;
+@delete_color: #dbb8c9;
+@text_color: #74aac9;
+@hover_color: #4682a5;
+
+body{
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+header{
+    background:@text_color;
+    color: white;
+    flex-direction: row;
+    padding: 20px;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    right: 0px;
+    #auth{
+        position: absolute;
+        top:0px;
+        right: 0px;
+        padding:10px;
+    }
+    #username{
+        position: absolute;
+        top:0px;
+        left: 0px;
+        padding:10px;
+        margin:0px;
+    }
+    #auth:hover{
+        cursor: pointer;
+        background: @hover_color;
+    }
+}
+li{
+    list-style-type: none;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+    font-size: 18px;
+    margin-left: -35px;
+    border-radius: 5px;
+}
+li:hover{
+    background: @li_color;
+}
+td{
+    padding:10px 10px 10px 10px;
+}
+th{
+    background: @input_color;
+    font-weight: bold; 
+    padding:10px 10px 10px 10px;
+    //border: 4px @input_color solid
+}
+th:first-child{
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+th:last-child{
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+td:first-child {
+    text-align: left;
+}
+/*td:last-child{
+    background: @delete_color;
+    color: darkred;
+    font-weight: bold;
+    border-radius: 5px;
+}*/
+button{
+    padding:10px 10px 10px 10px;
+    background: @li_color;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#deleteButton{
+    background: @delete_color;
+    color: darkred;
+    font-weight: bold;
+}
+#YMapsID{
+    width: 600px;
+    height: 250px;
+    padding: 0;
+    margin: 0;
+}
+#sold{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    font-size: 30px;
+    color: @delete_color;
+}
+#mainchat{
+    position: absolute;
+    bottom:10px;
+    right:10px;
+    width:300px;
+    height:200px;
+    border:solid gray 1px;
+    padding: 10px;
+    #chat{
+        li{
+            padding: 0px;
+            font-size: 12px;
+        }
+        li:hover{
+            background: white;
+        }
+        height: 70%;
+        width: 100%;
+        overflow-y: auto;
+    }
+    #form{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        button{
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
+    }
+}
+input{
+    border:none;
+    border-bottom: 1px solid black;
+}
+.window {
+    width: 300px;
+    align-items: left;
+    padding-left: 50px;
+    border-radius: 5px;
+    background: white;
+}
+.window-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position:fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+}
+.window-container .window {
+    height: auto;
+    margin: 100px auto auto auto;
+    width:400px;
+    padding: 10px;
+    text-align: left;
+    button{
+        align-self: left;
+    }
+}
+.close {
+    float: right;
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    text-decoration: none;
+    margin-top: 0;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}

@@ -1,0 +1,88 @@
+[
+	{
+		"id": "2",
+		"name": "qwe",
+		"inAuc": "Yes",
+		"location": "asd",
+		"money": 1001,
+		"coord": {
+			"x": "10",
+			"y": "10"
+		},
+		"paintings": [
+			{
+				"id": "0",
+				"name": "Saturn Devouring His Son",
+				"author": "Francisco Goya",
+				"description": "5",
+				"price": "100000",
+				"min": "0",
+				"max": "200000",
+				"step": "0",
+				"inAuction": "No",
+				"isSold": "Yes"
+			},
+			{
+				"id": "0",
+				"name": "Saturn Devouring His Son",
+				"author": "Francisco Goya",
+				"description": "5",
+				"price": "100000",
+				"min": "0",
+				"max": "200000",
+				"step": "0",
+				"inAuction": "No",
+				"isSold": "Yes"
+			}
+		]
+	},
+	{
+		"id": "3",
+		"name": "Volodya",
+		"inAuc": "Yes",
+		"location": "Moscow",
+		"money": "100000",
+		"coord": {
+			"x": "55.751574",
+			"y": "39"
+		},
+		"paintings": []
+	},
+	{
+		"id": "4",
+		"name": "Vitaliy",
+		"inAuc": "No",
+		"location": "Vladimirl",
+		"money": "100000",
+		"coord": {
+			"x": "50.6",
+			"y": "36.5"
+		},
+		"paintings": []
+	},
+	{
+		"id": "5",
+		"name": "Name",
+		"inAuc": "Yes",
+		"location": "Location",
+		"money": 130000,
+		"coord": {
+			"x": "55.751574",
+			"y": "37.573856"
+		},
+		"paintings": [
+			{
+				"id": 1,
+				"name": "The Starry Night",
+				"author": "Vincent van Gogh",
+				"description": "1234",
+				"price": 150000,
+				"min": 0,
+				"max": 999999,
+				"step": 0,
+				"inAuction": "No",
+				"isSold": "Yes"
+			}
+		]
+	}
+]

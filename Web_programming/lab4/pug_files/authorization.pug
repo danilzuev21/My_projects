@@ -1,0 +1,62 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Authorization
+        style 
+            include ../public/styles/css/auth.css
+        script
+            include ../node_modules/jquery/dist/jquery.min.js
+        script(src="/socket.io/socket.io.js")
+    body
+        h1 Authorization
+        .form
+            input(id="nameid" type="name" name="name" autocomplete="off" required)
+            label.label-name(for="name") 
+                span.content-name Username
+        script.
+            let socket = io.connect('http://localhost:3000');
+            let participants = !{JSON.stringify(participants)};
+            function check(name){
+                if(name === "admin") 
+                    return true;
+                if (participants.filter((n) => {
+                    return n.name === name
+                }).length == 0){
+                    return false;
+                }
+                return true;
+            }
+            let username1 = localStorage.getItem('lab3.username');
+            if(username1 === ""){
+
+            } else {
+                socket.emit('username', username1);
+                
+                socket.on('identification',(res)=>{
+                    if(res === 'error'){
+                       // window.location.href = '/';
+                    } else{
+                        $('#nameid').val(username1);
+                    }
+                });
+            }
+            $("input").on('keypress', function(e){
+                if(e.which == 13){
+                    let username = $(this).val();
+                    console.log(username);
+                    console.log(participants);
+                    if(!username){
+                        alert("Input username, please");
+                        return;
+                    }
+                    if(check(username)){
+                        localStorage.setItem('lab3.username', username);
+                        window.location.href = '/main';
+                    } else {
+                        alert("User is not in the database!");
+                    }
+                }
+            })

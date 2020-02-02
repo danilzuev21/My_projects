@@ -1,0 +1,203 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title &laquo#{painting.name}&raquo #{painting.author} 
+        style
+            include ../public/styles/css/main.css
+        script
+            include ../node_modules/jquery/dist/jquery.min.js
+        script(src="/socket.io/socket.io.js")
+    body(style="margin:50px;")
+        include head.pug
+        h1  &laquo#{painting.name}&raquo #{painting.author}
+        table#p_table
+            thead
+                tr
+                    th Name
+                    th Author
+                    th Description
+                    th Price
+                    th Min step
+                    th Max step
+                    th Takes part?
+            tr
+                td #{painting.name}
+                td #{painting.author}
+                td #{painting.description}
+                td &dollar;#{painting.price}
+                td &dollar;#{painting.min}
+                td &dollar;#{painting.max}
+                td #{painting.inAuction}
+        img#image_id(style="height:250px" alt="There is no picture")
+        #img(style="dislpay:none;")
+            label File:
+                form(method='post' enctype='multipart/form-data' id='fileinfo')
+                    input(type='file' name='file' id='file')
+                button#submit Add image
+        table
+            tr#buttons 
+        script.
+            let p = !{JSON.stringify(painting)};
+            $(document).ready(()=>{
+                $('#image_id').attr("src", "http://localhost:3000/"+p.id+'.jpg');
+                $('#img').css('display','none');
+                let socket = io.connect('http://localhost:3000');
+                let username1 = localStorage.getItem('lab3.username');
+                if(username1 === ""){
+                    $("#username").text("Guest");
+                    $("#auth").html("Log in");
+                    $("#auth").on("click", ()=>{
+                        window.location.href = '/';
+                    });
+                    notAdmin();
+                } else {
+                    socket.emit('username', username1);
+                    console.log(username1);
+                    socket.on('identification',(res)=>{
+                        if(res === 'error'){
+                            window.location.href = '/';
+                        } else{
+                            if(res === "admin"){
+                                admin();
+                            } else {
+                                notAdmin();
+                            }
+                            $("#username").text(username1);
+                            $("#auth").html("Log out");
+                            $("#auth").on("click", ()=>{
+                                localStorage.setItem('lab3.username', "");
+                                window.location.href = '/';
+                            });
+                        }
+                    });
+                }
+                if(p.isSold === "Yes")
+                    $('#sold').css('display','block');
+            })
+            const createInput = function (type, id, value = 0) {
+                var input = document.createElement("input");
+                input.type = type;
+                input.id = id;
+                if (type === 'text') {
+                    input.placeholder = value;
+                }
+                if (type === "radio") {
+                    input.value = 'value';
+                }
+                return input;
+            };
+            function admin(){
+                $("#buttons").append("<td><button id='editButton'>Edit painting</button></td>")
+                $("#buttons").append("<td><button id='addImage'>Add picture</button></td>")
+                $("#buttons").append("<td><button id='deleteButton'>Delete painting</button></td>")
+                $("#buttons").append("<td><button id='backPart'>Back to list</button></td>")
+                
+                $('#addImage').on('click',()=>{
+                    $('#img').css('display','block');
+                    $('#submit').on('click',()=>{
+                        let fd = new FormData();
+                        let files = $('#file')[0].files[0];
+                        fd.append('file', files);
+                        file = $("#file").val();
+                        $.ajax({
+                            type:'post',
+                            url:'http://localhost:3000/paint/'+p.id,
+                            data: fd,
+                            processData:false,
+                            contentType:false,
+                            success:function (res) {
+                                console.log(res);
+                                let painting = res.painting;
+                                d = new Date();
+                                $("#image_id").attr("src", "http://localhost:3000/"+painting[0].id+'.jpg'+'?'+d.getTime());
+                            }
+                        });
+                        $('#img').css('display','none');
+                    });
+                });
+                $('#editButton').on('click',()=> {
+                    let name = p.name;
+                    let location = p.location;
+                    $('#editButton').prop('disabled', true);
+                    $('#addImage').prop('disabled', true);
+                    $('#deleteButton').prop('disabled', true);
+                    $('#backPart').prop('disabled', true);
+                    let table = document.getElementById('p_table');
+                    table.deleteRow(1);
+                    var row = table.insertRow(1);
+                    row.insertCell().appendChild(createInput('text', 'p_name', 'Input name')).value = p.name;
+                    row.insertCell().appendChild(createInput('text', 'p_author', 'Input author')).value = p.author;
+                    row.insertCell().appendChild(createInput('text', 'p_desc', 'Input description')).value = p.description;
+                    row.insertCell().appendChild(createInput('number', 'p_price', 'Input price')).value = p.price;
+                    row.insertCell().appendChild(createInput('number', 'p_min', 'Min step')).value = p.min;
+                    row.insertCell().appendChild(createInput('number', 'p_max', 'Max step')).value = p.max;
+                    row.insertCell().appendChild(createInput('text', 'p_in', 'Takes part?')).value = p.inAuction;
+                    let done = row.insertCell()
+                    done.innerText = '✓';
+                    done.style.cursor = 'pointer';
+                    done.style = "border-radius: 50px;cursor:pointer;font-weight:bold;";
+                    done.onclick = function () {
+                        p.name = $('#p_name').val();
+                        p.author = $('#p_author').val();
+                        p.inAuction = $('#p_in').val();
+                        if(p.name != "" && p.author != "" && (p.inAuction === "Yes" || p.inAuction === "No")){
+                            p.description = $('#p_desc').val();
+                            p.price = $('#p_price').val();
+                            p.min = $('#p_min').val();
+                            p.max = $('#p_max').val();
+                            send(p);
+                            $('#editButton').prop('disabled', false);
+                            $('#addImage').prop('disabled', false);
+                            $('#backPart').prop('disabled', false);
+                            $('#deleteButton').prop('disabled', false);
+                        } else {
+                            alert("Input correct data please!");
+                        }
+                    }
+                });
+                $("#deleteButton").on('click', ()=> {
+                    let id = p.id;
+                    alert("Pinting removed");
+                    $.ajax({
+                        type:'delete',
+                        url:'/paintings/' + id,
+                    });
+                    window.location.href = '/paintings';
+                });
+                $('#backPart').on('click',()=>{
+                    window.location = "http://localhost:3000/paintings";
+                })
+                const send = function (participant) {
+                    $.ajax({
+                        type: 'put',
+                        url: window.location.href,
+                        data: participant,
+                        success: (res)=>{
+                            let painting = res.painting;
+                            if (painting) {
+                                let table = document.getElementById('p_table');
+                                table.deleteRow(1);
+                                var row = table.insertRow(1);
+                                row.insertCell().innerText = painting.name;
+                                row.insertCell().innerText = painting.author;
+                                row.insertCell().innerText = painting.description;
+                                row.insertCell().innerText = '$'+painting.price;
+                                row.insertCell().innerText = '$'+painting.min;
+                                row.insertCell().innerText = '$'+painting.max;
+                                row.insertCell().innerText = painting.inAuction;
+                            } else {
+                                alert(res.message ? res.message : "Неизвестная ошибка на стороне сервера")
+                            }
+                        }
+                    });
+                }
+            }
+            function notAdmin(){
+                $("#buttons").append("<td><button id='backPart'>Back to list</button></td>")
+                $('#backPart').on('click',()=>{
+                    window.location = "http://localhost:3000/paintings";
+                })
+            }

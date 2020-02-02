@@ -1,0 +1,11 @@
+{
+	"curBuyer": {
+		"buyer": "",
+		"value": "0",
+		"id": "0"
+	},
+	"date": "2019-11-15T16:00",
+	"timeout": "1",
+	"duration": "360",
+	"pause": "200"
+}

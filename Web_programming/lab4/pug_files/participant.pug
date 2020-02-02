@@ -1,0 +1,158 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title #{participant.name} 
+        style
+            include ../public/styles/css/main.css
+        script
+            include ../node_modules/jquery/dist/jquery.min.js
+        script(src="/socket.io/socket.io.js")
+    body
+        include head.pug
+        h1 Participant #{participant.name}
+        table#p_table
+            thead
+                tr
+                    th Name
+                    th Location
+                    th Takes part?
+                    th Money
+                    th Coordinates
+            tr
+                td #{participant.name}
+                td #{participant.location}
+                td #{participant.inAuc}
+                td &dollar;#{participant.money}
+                td x:#{participant.coord.x}  y:#{participant.coord.y}
+        table
+            tr#buttons
+        script.
+            let p = !{JSON.stringify(participant)};
+            $(document).ready(()=>{
+                let socket = io.connect('http://localhost:3000');
+                let username1 = localStorage.getItem('lab3.username');
+                if(username1 === ""){
+                    $("#username").text("Guest");
+                    $("#auth").html("Log in");
+                    $("#auth").on("click", ()=>{
+                        window.location.href = '/';
+                    });
+                    notAdmin();
+                } else {
+                    socket.emit('username', username1);
+                    
+                    socket.on('identification',(res)=>{
+                        if(res === 'error'){
+                            window.location.href = '/';
+                        } else{
+                            if(res === "admin"){
+                                admin();
+                            } else {
+                                notAdmin();
+                            }
+                            $("#username").text(username1);
+                            $("#auth").html("Log out");
+                            $("#auth").on("click", ()=>{
+                                localStorage.setItem('lab3.username', "");
+                                window.location.href = '/';
+                            });
+                        }
+                    });
+                }
+            });
+            function admin(){
+                $("#buttons").append("<td><button id='editButton'>Edit participant</button></td>")
+                $("#buttons").append("<td><button id='deleteButton'>Delete participant</button></td>")
+                $("#buttons").append("<td><button id='backPart'>Back to list</button></td>")
+                $('#editButton').on('click',()=> {
+                    let name = p.name;
+                    let location = p.location;
+                    console.log(p);
+                    $('#editButton').prop('disabled', true);
+                    $('#deleteButton').prop('disabled', true);
+                    let table = document.getElementById('p_table');
+                    table.deleteRow(1);
+                    var row = table.insertRow(1);
+                    row.insertCell().appendChild(createInput('text', 'p_name', 'Takes part?')).value = p.name;
+                    row.insertCell().appendChild(createInput('text', 'p_location', 'Takes part?')).value = p.location;
+                    row.insertCell().appendChild(createInput('text', 'p_in', 'Takes part?')).value = p.inAuc;
+                    row.insertCell().appendChild(createInput('text', 'p_money', 'Takes part?')).value = p.money;
+                    row.insertCell().appendChild(createInput('number', 'p_x', 'x coord')).value = p.coord.x;
+                    row.insertCell().appendChild(createInput('number', 'p_y', 'y coord')).value = p.coord.y;
+                    let done = row.insertCell()
+                    done.innerText = '✓';
+                    done.style.cursor = 'pointer';
+                    done.style = "border-radius: 50px;cursor:pointer;font-weight:bold;";
+                    done.onclick = function () {
+                        //console.log(document.getElementById('p_name').value, p.location);
+                        p.name = $('#p_name').val();
+                        p.location = $('#p_location').val();
+                        p.inAuc = $('#p_in').val();
+                        if(p.name != "" && p.location != "" && (p.inAuc === "Yes" || p.inAuc === "No")){
+                            p.money = $('#p_money').val();
+                            p.coord.x = $('#p_x').val();
+                            p.coord.y = $('#p_y').val();
+                            send(p);
+                            $('#editButton').prop('disabled', false);
+                            $('#deleteButton').prop('disabled', false);
+                        } else {
+                            alert("Input correct data please!");
+                        }
+                    }
+                });
+                $("#deleteButton").on('click', ()=> {
+                    let id = p.id;
+                    alert("Participant removed");
+                    $.ajax({
+                        type:'delete',
+                        url:'/participants/' + id,
+                    });
+                    window.location.href = '/participants';
+                });
+                $('#backPart').on('click',()=>{
+                    window.location = "http://localhost:3000/participants";
+                })
+                const send = function (participant) {
+                    $.ajax({
+                        type: 'put',
+                        url: window.location.href,
+                        data: participant,
+                        success: (res)=>{
+                            let participant = res.participant;
+                            if (participant) {
+                                let table = document.getElementById('p_table');
+                                table.deleteRow(1);
+                                var row = table.insertRow(1);
+                                row.insertCell().innerText = participant.name;
+                                row.insertCell().innerText = participant.location;
+                                row.insertCell().innerText = participant.inAuc;
+                                row.insertCell().innerText = '$'+participant.money;
+                                row.insertCell().innerText = 'x: '+participant.coord.x+' '+'y: '+participant.coord.y;
+                            } else {
+                                alert(res.message ? res.message : "Неизвестная ошибка на стороне сервера")
+                            }
+                        }
+                    });
+                }
+            }
+            function notAdmin(){
+                $("#buttons").append("<td><button id='backPart'>Back to list</button></td>")
+                $('#backPart').on('click',()=>{
+                    window.location = "http://localhost:3000/participants";
+                })
+            }
+            const createInput = function (type, id, value = 0) {
+                var input = document.createElement("input");
+                input.type = type;
+                input.id = id;
+                if (type === 'text') {
+                    input.placeholder = value;
+                }
+                if (type === "radio") {
+                    input.value = 'value';
+                }
+                return input;
+            };

@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title List of paintings
+        style
+            include ../public/styles/css/main.css
+        
+        script( src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript")
+        script( src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;coordorder=longlat&amp;apikey=cacfb86e-67fb-4119-a529-5508d6ff40c7" type="text/javascript")
+        script
+            include ../node_modules/jquery/dist/jquery.min.js
+            include ../public/lib/participants.js
+        script(src="/socket.io/socket.io.js")
+    body
+        .window-container#addPainting
+            .window
+                .close#close_popup ×
+                h2(align='center') Input data of new participant
+                label Name: 
+                input#p_name(type = 'text')
+                br
+                label Location: 
+                input#p_location(type = 'text')
+                br
+                button#submit Add participant
+        h1 List of participants
+        table
+            tr
+                td
+                    ul
+                        each item in participants
+                            li(data-href='http://localhost:3000/participants/'+item.id, data-id=item.id) #{item.name}
+                td
+                    #YMapsID
+        table
+            tr#buttons
+             
