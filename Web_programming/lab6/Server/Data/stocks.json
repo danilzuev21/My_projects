@@ -1,0 +1,48 @@
+[
+	{
+		"name": "Gasprom",
+		"startingPrice": 400,
+		"distribType": "Uniform",
+		"maxChangeValue": 321,
+		"quantity": 1000,
+		"id": 1,
+		"price": 184
+	},
+	{
+		"name": "Mobil1",
+		"startingPrice": 5000,
+		"distribType": "Binomial",
+		"maxChangeValue": 1000,
+		"quantity": 4993,
+		"id": 2,
+		"price": 4997
+	},
+	{
+		"name": "Tesla Corp.",
+		"startingPrice": 100,
+		"distribType": "Normal",
+		"maxChangeValue": 50,
+		"quantity": 5,
+		"id": 3,
+		"price": 120
+	},
+	{
+		"name": "Saudi oil",
+		"startingPrice": 250,
+		"distribType": "Normal",
+		"maxChangeValue": 50,
+		"quantity": 1000,
+		"id": 4,
+		"price": 250,
+		"amount": null
+	},
+	{
+		"name": "Avisma",
+		"startingPrice": 500,
+		"distribType": "Binomial",
+		"maxChangeValue": 250,
+		"quantity": 5000,
+		"id": 5,
+		"price": 520
+	}
+]

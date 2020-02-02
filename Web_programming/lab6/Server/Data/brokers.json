@@ -1,0 +1,37 @@
+[
+	{
+		"name": "Ivan",
+		"wealth": 100000,
+		"id": 1
+	},
+	{
+		"name": "Vladimir",
+		"wealth": 100000,
+		"id": 2
+	},
+	{
+		"name": "Genadiy",
+		"wealth": 1000000,
+		"id": 3
+	},
+	{
+		"name": "Grigoriy",
+		"wealth": 85531,
+		"id": 4,
+		"stocks": {
+			"1": 0,
+			"2": 3,
+			"3": 0
+		}
+	},
+	{
+		"name": "V",
+		"wealth": 1885554,
+		"id": 5,
+		"stocks": {
+			"1": 0,
+			"2": 4,
+			"3": 495
+		}
+	}
+]

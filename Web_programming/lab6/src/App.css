@@ -1,0 +1,41 @@
+body{
+  height:60vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font-family:sans-serif
+}
+td{
+  padding:10px 10px 10px 10px
+}
+th{
+  background:#cad2e9;
+  font-weight:700;
+  padding:10px 10px 10px 10px
+}
+th:first-child, td:first-child{
+  border-top-left-radius:50px;
+  border-bottom-left-radius:50px
+}
+th:last-child, td:last-child{
+  border-top-right-radius:50px;
+  border-bottom-right-radius:50px
+}
+td:first-child{
+  text-align:left
+}
+button{
+  padding:10px 10px 10px 10px;
+  background:#aac9db;
+  border-radius:50px;
+  cursor:pointer;
+  font-size:16px
+}
+input{border:none;border-bottom:1px solid #000}
+p{
+  margin:0px;
+}
+.selectedStock{
+  background: #8dd6eb
+}
