@@ -1,0 +1,27 @@
+[
+	{
+		"name": "Vasiliy",
+		"wealth": 99999,
+		"id": "1"
+	},
+	{
+		"name": "Grigoriy",
+		"wealth": 100000,
+		"id": 2
+	},
+	{
+		"name": "Vitaliy",
+		"wealth": 1000000,
+		"id": "3"
+	},
+	{
+		"name": "Vladimir",
+		"wealth": 100000,
+		"id": 4
+	},
+	{
+		"name": "Name",
+		"wealth": 123,
+		"id": 6
+	}
+]

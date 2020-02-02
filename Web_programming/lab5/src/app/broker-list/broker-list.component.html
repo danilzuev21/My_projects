@@ -1,0 +1,54 @@
+<meta meta charset="utf-8">
+<table class="brokers" style.border="none">
+	<tr>
+		<th>Name</th>
+		<th>Money</th>
+	</tr>
+	<tr *ngFor="let broker of brokers" (click)="showEditBrokerDialog(broker)">
+		<td>{{broker.name}}</td>
+		<td>{{broker.wealth}}</td>
+	</tr>
+</table>
+<button (click)="showAddBrokerDialog()">Add broker</button>
+<div class="dialogBack" *ngIf="currDialog">
+	<div class="dialogContent">
+		<div class="dialogHeader">
+			<span (click)="hideDialog()" class="dialogCloseButton"> × </span>
+			<h2 *ngIf="currDialog == 'Add'"> Add broker </h2>
+			<h2 *ngIf="currDialog == 'Edit'"> Edit broker </h2>
+		</div>
+		<div class="dialogBody">
+			<label> Name:
+			</label>
+			<br>
+			<input [(ngModel)]="broker.name" type="text" required />
+			<br>
+			<label> Money:
+			</label>
+			<br>
+			<input [(ngModel)]="broker.wealth" type="number" required />
+			<div>
+				<table>
+					<tr>
+						<td>
+							<button (click)="okButton()" class="button">
+								<span *ngIf="currDialog == 'Add'">Add</span>
+								<span *ngIf="currDialog == 'Edit'">Save</span>
+							</button>
+						</td>
+						<td>
+							<button (click)="cancelButton()" class="button">
+								Cancel
+							</button>
+						</td>
+						<td>
+							<button *ngIf="currDialog == 'Edit'" (click)="deleteButton()" class="deleteButton">
+								Delete
+							</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

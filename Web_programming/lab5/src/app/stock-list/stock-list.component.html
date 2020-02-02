@@ -1,0 +1,80 @@
+<!-- <p>
+  stock-list works!
+</p> -->
+<meta meta charset="utf-8">
+<table class="stocks">
+	<tr>
+		<th>Name</th>
+		<th>Start price</th>
+		<th>Distribution</th>
+		<th>Max change value</th>
+		<th>Quantity</th>
+	</tr>
+	<tr *ngFor="let stock of stocks" (click)="showEditStockDialog(stock)">
+		<td>{{stock.name}}</td>
+		<td>{{stock.startingPrice}}</td>
+		<td>{{stock.distribType}}</td>
+		<td>{{stock.maxChangeValue}}</td>
+		<td>{{stock.quantity}}</td>
+	</tr>
+</table>
+<button (click)="showAddStockDialog()">Add</button>
+<div class="dialogBack" *ngIf="currDialog">
+	<div class="dialogContent">
+		<div class="dialogHeader">
+			<span (click)="hideDialog()" class="dialogCloseButton"> × </span>
+			<h2 *ngIf="currDialog == 'Add'"> Add stock </h2>
+			<h2 *ngIf="currDialog == 'Edit'"> Edit stock </h2>
+		</div>
+		<div class="dialogBody">
+			<div>
+				<label> Name of company: </label>
+				<br>
+				<input [(ngModel)]="stock.name" type="text" required />
+				<br>
+				<label> Start price: </label>
+				<br>
+				<input [(ngModel)]="stock.startingPrice" type="number" required />
+
+				<br>
+				<label> Distribution: </label>
+				<br>
+				<select [(ngModel)]="stock.distribType" required>
+					<option> Uniform </option>
+					<option> Normal </option>
+					<option> Binomial </option>
+				</select>
+
+				<br>
+				<label> Max change value: </label>
+				<br>
+				<input [(ngModel)]="stock.maxChangeValue" type="number" required />
+
+				<br>
+				<label> Quantity: </label>
+				<br>
+				<input [(ngModel)]="stock.quantity" type="number" required />
+			</div>
+			<table>
+				<tr>
+					<td>
+						<button (click)="okButton()" class="button">
+							<span *ngIf="currDialog == 'Add'">Add</span>
+							<span *ngIf="currDialog == 'Edit'">Save</span>
+						</button>
+					</td>
+					<td>
+						<button (click)="cancelButton()" class="button">
+							Cancel
+						</button>
+					</td>
+					<td>
+						<button *ngIf="currDialog == 'Edit'" (click)="deleteButton()" class="deleteButton">
+							Delete
+						</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

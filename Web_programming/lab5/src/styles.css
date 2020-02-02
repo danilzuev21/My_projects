@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    height:60vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-family:sans-serif
+}
+th{
+    background:#cad2e9;
+    font-weight:700;
+    padding:10px 10px 10px 10px
+}
+th:first-child{
+    border-top-left-radius:50px;
+    border-bottom-left-radius:50px
+}
+th:last-child{
+    border-top-right-radius:50px;
+    border-bottom-right-radius:50px
+}
+td:first-child{
+    text-align:left
+}
+button{
+    padding:10px 10px 10px 10px;
+    background: #eee;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button:hover {
+    background-color: #cfd8dc;
+  }
+  button:disabled {
+    background-color: #eee;
+    color: #ccc;
+    cursor: auto;
+  }
+  button:active {
+    background-color: rgb(115, 141, 189); /* Add a green color to the "active/current" link */
+    color: white;
+  }
+  

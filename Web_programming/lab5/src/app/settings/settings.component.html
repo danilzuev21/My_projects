@@ -1,0 +1,23 @@
+<div>
+	<label>Begin</label>
+	<br>
+	<label>date:</label>
+	<input type="date" [(ngModel)]="settings.StartDate" placeholder="date"/>
+	<label>time:</label>
+	<input type="time" [(ngModel)]="settings.StartTime" placeholder="time"/>
+</div>
+<div>
+	<label>End</label>
+	<br>
+	<label>date:</label>
+	<input type="date" [(ngModel)]="settings.EndDate" placeholder="date"/>
+	<label>time:</label>
+	<input type="time" [(ngModel)]="settings.EndTime" placeholder="time"/>
+	
+</div>
+<div>
+	<label>Update time interval:</label>
+	<input type="number" [(ngModel)]="settings.Interval" placeholder=""/>
+	
+</div>
+<button (click)="save()">Save</button>

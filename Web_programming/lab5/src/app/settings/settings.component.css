@@ -1,0 +1,13 @@
+/* HeroDetailComponent's private CSS styles */
+label {
+  display: inline-block;
+  margin: .5em 0;
+  font-weight: bold;
+}
+input {
+  height: 2em;
+  font-size: 1em;
+  padding-left: .4em;
+  border:none;
+  border-bottom: 1px solid black;
+}

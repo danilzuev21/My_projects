@@ -1,0 +1,18 @@
+table  {
+	border-collapse: collapse;
+}
+table tr:not(:first-child):hover {
+	background-color: #bed5e2;
+	cursor: pointer;
+}
+table th, td {
+	padding: 8px;
+}
+tr td:first-child{
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+tr td:last-child{
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
